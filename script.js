@@ -22,3 +22,18 @@ const operate = (firstNumber, secondNumber) => {
     return addition(firstNumber, secondNumber);
 }
 console.log(operate(10, 10));
+
+
+
+
+let allBtn = document.querySelectorAll('.myBtn');
+    allBtn.forEach((btn) => {
+    btn.addEventListener('click', populate);
+        
+});
+
+
+function populate(e) {
+    let value = e.target.value;
+    document.querySelector('.down').textContent = value;
+}; 
