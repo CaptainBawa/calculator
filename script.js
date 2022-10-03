@@ -8,8 +8,8 @@ const equals = document.querySelector('.myEqualsBtn');
 const clear = document.querySelector('.clear');
 const del = document.querySelector('.delete');
 
-topDisplay = '';
-downDisplay = '';
+topDisplay.textContent = '';
+downDisplay.textContent = '';
 
 
 
@@ -58,28 +58,26 @@ const division = (firstNumber, secondNumber) => {
 };
 
 
+
 /**
- * It takes in two numbers and an operator, and returns the result of the operation
- * @param firstNumber - The first number in the equation.
+ * It takes in two numbers and an operator and returns the result of the operation
+ * @param firstNumber - The first number to be operated on.
  * @param secondNumber - The second number to be operated on.
  * @param operator - a string representing the operator to be used
- * @returns The result of the operation.
+ * @returns the result of the operation.
  */
-const operate = (firstNumber, secondNumber, operator) => {
-    if(operator === '+'){
-        return addition(firstNumber, secondNumber);
-    }
-    else if(operator === '-'){
-        return subtraction(firstNumber, secondNumber);
-    }
-    else if(operator === '*'){
-        return multiplication(firstNumber, secondNumber);
-    }
-    else if(operator === '/'){
-        return division(firstNumber, secondNumber);
-    }
-    else{
-        return 'invalid';
+const operate = (firstNumber, secondNumber, operator) =>{
+    switch(operator){
+        case '+':
+            return addition(firstNumber, secondNumber);
+        case '-':
+            return subtraction(firstNumber, secondNumber);
+        case '*':
+            return multiplication(firstNumber, secondNumber);
+        case '/' :
+            return division(firstNumber, secondNumber);
+        default :
+            return 'invalid';
     };
 };
 
@@ -89,6 +87,10 @@ let firstNum = '';
 let calculate = '';
 
 
+/* This is a forEach loop that is looping through the array of buttons with the class myNumberBtn. It
+is adding an event listener to each button that is clicked. When the button is clicked, the value of
+the button is added to the storedNumber variable. The value of the storedNumber variable is then
+displayed in the downDisplay div. */
 myNumberBtn.forEach((number) => {
     number.addEventListener('click', function() {
         storedNumber += number.value;
@@ -96,27 +98,44 @@ myNumberBtn.forEach((number) => {
     });       
 });
 
+/* This is a forEach loop that is looping through the array of buttons with the class myOperatorBtn. It
+is adding an event listener to each button that is clicked. When the button is clicked, the value of
+the button is added to the clickedOperator variable. The value of the clickedOperator variable is
+then
+displayed in the topDisplay div. */
 myOperatorBtn.forEach((operator => {
     operator.addEventListener('click', function() {
         if(firstNum && storedNumber){
             results();
         }
         firstNum = storedNumber;
-        clickedOperator = operator.textContent;
+        clickedOperator = operator.value;
         topDisplay.textContent = storedNumber + clickedOperator;
         storedNumber = '';
+
+        console.log('first:' + firstNum + 'stored' + storedNumber);
+        console.log(clickedOperator);
     });
 }));
 
+/* This is adding an event listener to the equals button. When the equals button is clicked, the
+results function is called. */
 equals.addEventListener('click', function() {
     results();
 });
 
 
+/**
+ * The results function takes the first number, the stored number, and the clicked operator and passes
+ * them to the operate function. The operate function returns a value which is stored in the calculate
+ * variable. The downDisplay is updated with the value of the calculate variable. The topDisplay is
+ * updated with the first number, the clicked operator, and the stored number. The stored number is
+ * updated with the value of the calculate variable
+ */
 const results = () => {
-    calculate = operate(parseFloat(firstNum), parseFloat(storedNumber), clickedOperator);
-    downDisplay = calculate;
-    topDisplay = `${firstNum} + ${clickedOperator} + ${storedNumber}`;
+    calculate = operate(parseFloat(firstNum), parseFloat(storedNumber), clickedOperator)
+    downDisplay.textContent = calculate;
+    topDisplay.textContent = firstNum + '' + clickedOperator + '' + storedNumber;
     storedNumber = calculate;
-}
+};
 
