@@ -9,7 +9,7 @@ const clear = document.querySelector('.clear');
 const del = document.querySelector('.delete');
 
 topDisplay.textContent = '';
-downDisplay.textContent = '';
+
 
 
 
@@ -138,4 +138,13 @@ const results = () => {
     topDisplay.textContent = firstNum + '' + clickedOperator + '' + storedNumber;
     storedNumber = calculate;
 };
+
+
+
+/* This is adding an event listener to the clear button. When the clear button is clicked, the
+topDisplay is updated with an empty string and the downDisplay is updated with the number 0. */
+clear.addEventListener('click', function() {
+    topDisplay.textContent = '';
+    downDisplay.textContent = 0;
+});
 
