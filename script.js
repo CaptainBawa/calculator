@@ -1,15 +1,15 @@
 /* This is selecting the elements from the DOM and assigning them to variables. */
 const myNumberBtn = document.querySelectorAll('.myNumberBtn');
 const myOperatorBtn = document.querySelectorAll('.myOperatorBtn');
-const myEqualsBtn = document.querySelector('.myEqualsBtn');
 const downDisplay = document.querySelector('.down');
 const topDisplay = document.querySelector('.top');
 const equals = document.querySelector('.myEqualsBtn');
 const clear = document.querySelector('.clear');
 const del = document.querySelector('.delete');
+const dot = document.querySelector('.myDotBtn');
 
-topDisplay.textContent = '';
-downDisplay.textContent = 0;
+//topDisplay.textContent = '';
+//downDisplay.textContent = 0;
 
 
 
@@ -68,6 +68,8 @@ const division = (firstNumber, secondNumber) => {
  * @returns the result of the operation.
  */
 const operate = (firstNumber, secondNumber, operator) =>{
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
     switch(operator){
         case '+':
             return addition(firstNumber, secondNumber);
@@ -76,6 +78,8 @@ const operate = (firstNumber, secondNumber, operator) =>{
         case '*':
             return multiplication(firstNumber, secondNumber);
         case '÷' :
+            if(secondNumber === 0) return "You Can't Divide By 0"
+            else
             return division(firstNumber, secondNumber);
         default :
             return 'invalid';
@@ -86,6 +90,13 @@ let storedNumber = '';
 let clickedOperator = '';
 let firstNum = '';
 let calculate = '';
+let resetDisplay = false;
+
+
+const resetDisplayScreen = () => {
+    downDisplay.textContent = 0;
+    resetDisplay = false
+};
 
 
 /* This is a forEach loop that is looping through the array of buttons with the class myNumberBtn. It
@@ -140,6 +151,9 @@ const results = () => {
 
 
  
+/* This is adding an event listener to the clear button. When the clear button is clicked, the
+topDisplay is updated with an empty string. The downDisplay is updated with the number 0. The
+firstNum, storedNumber, and clickedOperator variables are updated with empty strings. */
 clear.addEventListener('click', function() {
     topDisplay.textContent = '';
     downDisplay.textContent = 0;
@@ -163,5 +177,15 @@ del.addEventListener('click', function() {
    firstNum = '';
    storedNumber = '';
    clickedOperator = null;
+});
+
+
+dot.addEventListener('click', function(){
+    if(resetDisplay) resetDisplayScreen();
+    if(downDisplay.textContent === '');
+    downDisplay.textContent === 0;
+    if(downDisplay.textContent.includes('.')){
+        return downDisplay.textContent += '.';
+    };
 });
 
