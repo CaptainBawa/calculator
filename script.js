@@ -75,7 +75,7 @@ const operate = (firstNumber, secondNumber, operator) =>{
             return subtraction(firstNumber, secondNumber);
         case '*':
             return multiplication(firstNumber, secondNumber);
-        case '/' :
+        case '÷' :
             return division(firstNumber, secondNumber);
         default :
             return 'invalid';
