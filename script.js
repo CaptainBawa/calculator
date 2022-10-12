@@ -9,6 +9,7 @@ const clear = document.querySelector('.clear');
 const del = document.querySelector('.delete');
 
 topDisplay.textContent = '';
+downDisplay.textContent = 0;
 
 
 
@@ -112,9 +113,6 @@ myOperatorBtn.forEach((operator => {
         clickedOperator = operator.value;
         topDisplay.textContent = storedNumber + clickedOperator;
         storedNumber = '';
-
-        console.log('first:' + firstNum + 'stored' + storedNumber);
-        console.log(clickedOperator);
     });
 }));
 
@@ -137,6 +135,7 @@ const results = () => {
     downDisplay.textContent = calculate;
     topDisplay.textContent = firstNum + '' + clickedOperator + '' + storedNumber;
     storedNumber = calculate;
+    console.log(downDisplay);
 };
 
 
@@ -146,5 +145,12 @@ topDisplay is updated with an empty string and the downDisplay is updated with t
 clear.addEventListener('click', function() {
     topDisplay.textContent = '';
     downDisplay.textContent = 0;
+});
+
+
+del.addEventListener('click', function() {
+   let value = downDisplay.textContent;
+   let stringNumber = Number(value.toString().slice(0, -1));
+   downDisplay.textContent = stringNumber;
 });
 
