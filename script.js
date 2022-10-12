@@ -135,22 +135,33 @@ const results = () => {
     downDisplay.textContent = calculate;
     topDisplay.textContent = firstNum + '' + clickedOperator + '' + storedNumber;
     storedNumber = calculate;
-    console.log(downDisplay);
 };
 
 
 
-/* This is adding an event listener to the clear button. When the clear button is clicked, the
-topDisplay is updated with an empty string and the downDisplay is updated with the number 0. */
+ 
 clear.addEventListener('click', function() {
     topDisplay.textContent = '';
     downDisplay.textContent = 0;
+    firstNum = '';
+    storedNumber = '';
+    clickedOperator = null;
 });
 
 
+/* This is adding an event listener to the delete button. When the delete button is clicked, the
+value of the downDisplay is stored in the value variable. The value variable is then converted to a
+string and the last character is removed. The stringNumber variable is then converted back to a
+number
+and stored in the stringNumber variable. The downDisplay is updated with the value of the
+stringNumber
+variable. The firstNum, storedNumber, and clickedOperator variables are updated with empty strings. */
 del.addEventListener('click', function() {
    let value = downDisplay.textContent;
    let stringNumber = Number(value.toString().slice(0, -1));
    downDisplay.textContent = stringNumber;
+   firstNum = '';
+   storedNumber = '';
+   clickedOperator = null;
 });
 
