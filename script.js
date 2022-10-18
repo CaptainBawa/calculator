@@ -8,10 +8,6 @@ const clear = document.querySelector('.clear');
 const del = document.querySelector('.delete');
 const dot = document.querySelector('.myDotBtn');
 
-//topDisplay.textContent = '';
-//downDisplay.textContent = 0;
-
-
 
 
 /**
@@ -180,12 +176,19 @@ del.addEventListener('click', function() {
 });
 
 
+/* This is adding an event listener to the dot button. When the dot button is clicked, the
+value of the downDisplay is stored in the value variable. The value variable is then converted to a
+string and the last character is removed. The stringNumber variable is then converted back to a
+number
+and stored in the stringNumber variable. The downDisplay is updated with the value of the
+stringNumber
+variable. The firstNum, storedNumber, and clickedOperator variables are updated with empty strings. */
 dot.addEventListener('click', function(){
     if(resetDisplay) resetDisplayScreen();
     if(downDisplay.textContent === '');
     downDisplay.textContent === 0;
-    if(downDisplay.textContent.includes('.')){
-        return downDisplay.textContent += '.';
-    };
+
+    if(downDisplay.textContent.includes('.')) return
+    downDisplay.textContent += '.';
 });
 
