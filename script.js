@@ -6,7 +6,7 @@ const topDisplay = document.querySelector('.top');
 const equals = document.querySelector('.myEqualsBtn');
 const clear = document.querySelector('.clear');
 const del = document.querySelector('.delete');
-const dot = document.querySelector('.myDotBtn');
+//const dot = document.querySelector('.myDotBtn');
 
 
 
@@ -68,32 +68,28 @@ const operate = (firstNumber, secondNumber, operator) =>{
     secondNumber = Number(secondNumber);
     switch(operator){
         case '+':
-            return addition(firstNumber, secondNumber);
+           return  addition(firstNumber, secondNumber);
         case '-':
-            return subtraction(firstNumber, secondNumber);
+            subtraction(firstNumber, secondNumber);
         case '*':
-            return multiplication(firstNumber, secondNumber);
+           return multiplication(firstNumber, secondNumber);
         case '÷' :
             if(secondNumber === 0) return "You Can't Divide By 0"
-            else
-            return division(firstNumber, secondNumber);
+            else{
+           return division(firstNumber, secondNumber);
+            }
         default :
-            return 'invalid';
+            return 'error';
     };
+    
+    
 };
+
 
 let storedNumber = '';
 let clickedOperator = '';
 let firstNum = '';
 let calculate = '';
-let resetDisplay = false;
-
-
-const resetDisplayScreen = () => {
-    downDisplay.textContent = 0;
-    resetDisplay = false
-};
-
 
 /* This is a forEach loop that is looping through the array of buttons with the class myNumberBtn. It
 is adding an event listener to each button that is clicked. When the button is clicked, the value of
@@ -125,6 +121,8 @@ myOperatorBtn.forEach((operator => {
     });
 }));
 
+
+
 /* This is adding an event listener to the equals button. When the equals button is clicked, the
 results function is called. */
 equals.addEventListener('click', function() {
@@ -140,13 +138,11 @@ equals.addEventListener('click', function() {
  * updated with the value of the calculate variable
  */
 const results = () => {
-    calculate = operate(parseFloat(firstNum), parseFloat(storedNumber), clickedOperator)
+    calculate = operate(firstNum, storedNumber, clickedOperator);
     downDisplay.textContent = calculate;
-    topDisplay.textContent = firstNum + '' + clickedOperator + '' + storedNumber;
-    storedNumber = calculate;
+    topDisplay.textContent = firstNum + ' ' + clickedOperator + ' ' + storedNumber;
+    firstNum = calculate;
 };
-
-
 
  
 /* This is adding an event listener to the clear button. When the clear button is clicked, the
@@ -178,19 +174,10 @@ del.addEventListener('click', function() {
 });
 
 
-/* This is adding an event listener to the dot button. When the dot button is clicked, the
-value of the downDisplay is stored in the value variable. The value variable is then converted to a
-string and the last character is removed. The stringNumber variable is then converted back to a
-number
-and stored in the stringNumber variable. The downDisplay is updated with the value of the
-stringNumber
-variable. The firstNum, storedNumber, and clickedOperator variables are updated with empty strings. */
-dot.addEventListener('click', function(){
-    if(resetDisplay) resetDisplayScreen();
-    if(downDisplay.textContent === '');
-    downDisplay.textContent === 0;
 
-    if(downDisplay.textContent.includes('.')) return
-    downDisplay.textContent += '.';
-});
+/*dot.addEventListener('click', function(){
+    if(firstNum.includes('.')) {
+        firstNum += '.';
+    }
+});*/
 
