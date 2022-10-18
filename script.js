@@ -101,8 +101,10 @@ the button is added to the storedNumber variable. The value of the storedNumber 
 displayed in the downDisplay div. */
 myNumberBtn.forEach((number) => {
     number.addEventListener('click', function() {
+        if(storedNumber.length <= 11){
         storedNumber += number.value;
         downDisplay.textContent = storedNumber
+        }
     });       
 });
 
