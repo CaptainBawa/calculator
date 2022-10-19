@@ -70,7 +70,7 @@ const operate = (firstNumber, secondNumber, operator) =>{
         case '+':
            return  addition(firstNumber, secondNumber);
         case '-':
-            subtraction(firstNumber, secondNumber);
+            return subtraction(firstNumber, secondNumber);
         case '*':
            return multiplication(firstNumber, secondNumber);
         case '÷' :
